@@ -531,30 +531,35 @@ input::placeholder {
 }
 
 #stdin-container {
-  /*background-color: rgb(250, 250, 250);
-  padding: 0 1rem 1rem 1rem;*/
+  margin-top: -1rem;
   padding: 1rem;
   width: 100%;
-  /*position: fixed;
-  bottom: 0;*/
 }
 
 #stdout {
   color: rgb(60, 60, 60);
   font-size: 2rem;
   padding: 1rem;
-  /*padding-bottom: 8rem;*/
+  padding-bottom: 0;
 }
 
 #stdout div {
-  margin-top: 1rem;
+  margin: 1rem 0;
 }
 
 #stdout-clear {
+  /*background-color: rgb(250, 250, 250);*/
   height: 100vh;
 }
 
-.userinput {
+.msg {
+  border-radius: 0px;
+}
+
+.output {
+}
+
+.input {
   border-left: 1px solid rgb(0, 200, 150);
   color: rgb(120, 120, 120);
   font-family: 'Source Code Pro', monospace;
