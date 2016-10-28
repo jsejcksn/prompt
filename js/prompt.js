@@ -22,12 +22,12 @@ const prompt = (function() {
   }
 
   // Parse as number if applicable
-  function parseInput (input) {
+  function parseInput (str) {
     let parsed;
-    if (isNaN(input)) {
-      parsed = input;
+    if (isNaN(str)) {
+      parsed = str;
     } else {
-      parsed = parseFloat(input);
+      parsed = parseFloat(str);
     }
     return parsed;
   }
