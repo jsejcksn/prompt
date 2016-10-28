@@ -9,11 +9,11 @@ const program = (function() {
 
   // Get data from the user on return
   function getInput () {
-    const e = event;
-    let code = e.keyCode || e.which;
-    if (code === 13) { // Enter keycode
-      const trimmed = stdin.value.trim(); // remove whitespace
-      if (trimmed !== null && typeof trimmed !== 'undefined' && trimmed !== '') { // exists
+    const trimmed = stdin.value.trim(); // remove whitespace
+    if (trimmed !== null && typeof trimmed !== 'undefined' && trimmed !== '') { // exists
+      const e = event;
+      const code = e.keyCode || e.which;
+      if (code === 13) { // Enter keycode
         let parsed = parseInput(trimmed);
         savePrintInput(parsed);
         return parsed;
@@ -73,9 +73,9 @@ const program = (function() {
   // --- Expose ---
 
   return {
-    getInput: getInput,
     history: history,
-    prompt: prompt
+    prompt: prompt,
+    scrollBottom: scrollBottom
   };
 
 }());
