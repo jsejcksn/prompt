@@ -1,4 +1,4 @@
-const program = (function() {
+const prompt = (function() {
   'use strict';
 
   const stdin = document.getElementById('stdin');
@@ -35,7 +35,7 @@ const program = (function() {
   // Display information to user, including echoing input
   function prompt (msg, isInput) { // 'msg' is an array of strings
     const condClass = () => {
-      return isInput ? ' class="userinput"' : ''; // add userinput class if applicable
+      return isInput ? ' class="msg input"' : ' class="msg output"'; // add userinput class if applicable
     };
     const el = document.createElement('div'); // create div
     for (let i = 0; i < msg.length; i++) {
