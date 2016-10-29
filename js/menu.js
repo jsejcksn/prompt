@@ -1,4 +1,4 @@
-(function() {
+(() => {
   'use strict';
   const p = prompt;
 
@@ -20,7 +20,7 @@
     const arr = str.split('');
     let verdict = 0;
     for (let i = 0; i < arr.length; i++) {
-      if (!isNaN(arr[i])) {
+      if (!isNaN(arr[i]) && !isNaN(+arr[i])) {
         verdict++;
       }
     }
@@ -103,4 +103,4 @@
 
   stdin.addEventListener('keyup', finalMsg );
 
-}());
+})();
