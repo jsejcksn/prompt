@@ -20,7 +20,8 @@
     const arr = str.split('');
     let verdict = 0;
     for (let i = 0; i < arr.length; i++) {
-      if (!isNaN(arr[i]) && !isNaN(+arr[i])) {
+      let char = arr[i].trim();
+      if (!isNaN(char) && !isNaN(+char) && char !== '') { // is a number and not empty
         verdict++;
       }
     }
