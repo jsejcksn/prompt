@@ -7,6 +7,17 @@ const prompt = (() => {
 
   // --- Functions ---
 
+  // Focus the input when the slash (/) key is pressed
+  function focusInput () {
+    if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+      const e = event;
+      const code = e.keyCode || e.which;
+      if (code === 191) { // slash (/) keycode
+        stdin.focus(); // focus input
+      }
+    }
+  }
+
   // Get data from the user on return
   function getInput () {
     let parsed = parseInput(stdin.value);
@@ -64,21 +75,23 @@ const prompt = (() => {
 
   // --- Event listeners ---
 
-  stdin.addEventListener('focus', () => {
+  stdin.addEventListener('focus', () => { // remove input placeholder when focused
     if (stdin.placeholder) {
       stdin.removeAttribute('placeholder');
     }
   });
-  stdin.addEventListener('blur', () => {
+  stdin.addEventListener('blur', () => { // restore input placeholder when focus is lost
     stdin.placeholder = '>';
   });
   stdin.addEventListener('keyup', getInput);
   document.getElementById('stdout-clear').firstChild.addEventListener('click', scrollBottom);
+  document.addEventListener('keyup', focusInput);
 
   // --- Expose ---
 
   return {
     history: history,
+    parseInput: parseInput,
     prompt: prompt,
     scrollBottom: scrollBottom
   };
