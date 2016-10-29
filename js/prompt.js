@@ -9,12 +9,11 @@ const prompt = (() => {
 
   // Get data from the user on return
   function getInput () {
-    const trimmed = stdin.value.trim(); // remove whitespace
-    if (trimmed !== null && typeof trimmed !== 'undefined' && trimmed !== '') { // exists
+    let parsed = parseInput(stdin.value);
+    if (parsed !== null && typeof parsed !== 'undefined' && parsed !== '') { // exists and not empty
       const e = event;
       const code = e.keyCode || e.which;
       if (code === 13) { // Enter keycode
-        let parsed = parseInput(trimmed);
         savePrintInput(parsed);
         return parsed;
       }
@@ -23,11 +22,16 @@ const prompt = (() => {
 
   // Parse as number if applicable
   function parseInput (str) {
+    const trimmed = str.trim(); // remove whitespace
     let parsed;
-    if (isNaN(str) && isNaN(+str)) {
-      parsed = str;
+    if (trimmed !== null && typeof trimmed !== 'undefined' && trimmed !== '') { // exists and not empty
+      if (isNaN(str) && isNaN(+str)) { // if not a number
+        parsed = str; // store
+      } else {
+        parsed = +str; // parse as number and store
+      }
     } else {
-      parsed = +str;
+      parsed = trimmed; // store
     }
     return parsed;
   }
@@ -45,6 +49,7 @@ const prompt = (() => {
     scrollBottom();
   }
 
+  // Such a clear name that it needs no explanation
   function savePrintInput (input) {
     history.push(input); // save to history
     let arrInput = [input]; // set what we just saved as new msg for prompt
