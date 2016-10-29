@@ -1,6 +1,7 @@
 (() => {
   'use strict';
-  const p = prompt;
+
+  const p = prompt; // classic browser module hack: aliasing a global variable
 
   const stdin = document.getElementById('stdin');
   const logicState = {
@@ -15,6 +16,8 @@
   timedPrompt([
     'I don\'t do anything yet, so you can send me messages and I won\'t reply to you!'
   ], 2500);
+
+  // --- Functions ---
 
   function almostNumber (str) {
     const arr = str.split('');
@@ -101,6 +104,8 @@
       p.prompt(msg);
     }, cond());
   }
+
+  // --- Event listeners ---
 
   stdin.addEventListener('keyup', finalMsg );
 
