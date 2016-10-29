@@ -1,4 +1,4 @@
-const prompt = (function() {
+const prompt = (() => {
   'use strict';
 
   const stdin = document.getElementById('stdin');
@@ -24,10 +24,10 @@ const prompt = (function() {
   // Parse as number if applicable
   function parseInput (str) {
     let parsed;
-    if (isNaN(str)) {
+    if (isNaN(str) && isNaN(+str)) {
       parsed = str;
     } else {
-      parsed = parseFloat(str);
+      parsed = +str;
     }
     return parsed;
   }
@@ -78,4 +78,4 @@ const prompt = (function() {
     scrollBottom: scrollBottom
   };
 
-}());
+})();
