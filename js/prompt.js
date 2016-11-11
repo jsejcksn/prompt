@@ -8,9 +8,8 @@ const prompt = (() => {
   // --- Functions ---
 
   // Focus the input when the slash (/) key is pressed
-  function focusInput () {
+  function focusInput (e) { // e is event passed by browser
     if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-      const e = event;
       const code = e.keyCode || e.which;
       if (code === 191) { // slash (/) keycode
         stdin.focus(); // focus input
@@ -19,10 +18,9 @@ const prompt = (() => {
   }
 
   // Get data from the user on return
-  function getInput () {
+  function getInput (e) { // e is event passed by browser
     let parsed = parseInput(stdin.value);
     if (parsed !== null && typeof parsed !== 'undefined' && parsed !== '') { // exists and not empty
-      const e = event;
       const code = e.keyCode || e.which;
       if (code === 13) { // Enter keycode
         savePrintInput(parsed);
