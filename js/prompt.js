@@ -5,6 +5,22 @@ const prompt = (() => {
   const stdout = document.getElementById('stdout');
   const history = []; // history of inputs
 
+
+  // --- Event listeners ---
+
+  stdin.addEventListener('focus', () => { // remove input placeholder when focused
+    if (stdin.placeholder) {
+      stdin.removeAttribute('placeholder');
+    }
+  });
+  stdin.addEventListener('blur', () => { // restore input placeholder when focus is lost
+    stdin.placeholder = '>';
+  });
+  stdin.addEventListener('keyup', getInput);
+  document.getElementById('stdout-clear').firstChild.addEventListener('click', scrollBottom);
+  document.addEventListener('keyup', focusInput);
+
+
   // --- Functions ---
 
   // Focus the input when the slash (/) key is pressed
@@ -71,19 +87,6 @@ const prompt = (() => {
     window.scrollTo(0, document.body.scrollHeight);
   }
 
-  // --- Event listeners ---
-
-  stdin.addEventListener('focus', () => { // remove input placeholder when focused
-    if (stdin.placeholder) {
-      stdin.removeAttribute('placeholder');
-    }
-  });
-  stdin.addEventListener('blur', () => { // restore input placeholder when focus is lost
-    stdin.placeholder = '>';
-  });
-  stdin.addEventListener('keyup', getInput);
-  document.getElementById('stdout-clear').firstChild.addEventListener('click', scrollBottom);
-  document.addEventListener('keyup', focusInput);
 
   // --- Expose ---
 
